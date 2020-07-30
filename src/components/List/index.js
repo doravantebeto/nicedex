@@ -4,7 +4,7 @@ import { FiArrowRight, FiArrowLeft } from 'react-icons/fi'
 
 import Card from '../Card'
 
-const List = () => {
+const List = ({ favorites }) => {
   const [list, setList] = useState([''])
   const [page, setPage] = useState(0)
 
@@ -14,7 +14,7 @@ const List = () => {
       setList(res.data.results)
     })
 
-  }, [list, page])
+  }, [page])
 
   function changePage(way) {
 
@@ -27,7 +27,6 @@ const List = () => {
     }
 
   }
-
   return (
     <div className="list">
 
@@ -38,7 +37,12 @@ const List = () => {
       </nav>
 
       {list.map(item => (
-        <Card key={item.url + item.name} name={item.name} url={item.url} />
+        <Card
+          key={item.url + item.name}
+          name={item.name}
+          url={item.url}
+          favorites={favorites}
+        />
       ))}
 
     </div>
